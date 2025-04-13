@@ -17,8 +17,8 @@ Este é um aplicativo de desktop desenvolvido com **Electron + React + TypeScrip
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/projeto-verdinho.git
-cd projeto-verdinho
+git clone https://github.com/arleinascimento13/ProjetoVerdinho-Desktop.git
+cd ProjetoVerdinho-Desktop
 ```
 
 ### 2. Instale as dependências
