@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+frontend/node_modules/
+dist/
+dist-electron/
+frontend/dist/
+
+# Arquivos de build e temporários
+*.log
+*.lock
+*.tsbuildinfo
+
+# Cache do Vite, TypeScript, etc.
+.vite/
+.cache/
+out/
+temp/
+
+# Sistema
+.DS_Store
+Thumbs.db

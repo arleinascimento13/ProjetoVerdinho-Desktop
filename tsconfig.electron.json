@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"target": "ES2020",
+		"module": "CommonJS",
+		"outDir": "dist-electron",
+		"rootDir": "electron-src",
+		"strict": true,
+		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"baseUrl": "./",
+		"resolveJsonModule": true,
+		"types": ["node", "electron"],
+		"skipLibCheck": true, // ✅ Ignora conflitos de tipos nas libs
+		"allowSyntheticDefaultImports": true // ✅ Suporta importações híbridas como as do Electron
+	},
+	"include": ["electron-src/**/*"]
+}

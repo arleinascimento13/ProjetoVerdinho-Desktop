@@ -1,0 +1,46 @@
+{
+	"name": "projetoverdinho",
+	"version": "1.0.0",
+	"main": "dist-electron/main.js",
+	"scripts": {
+		"dev": "concurrently -k \"npm:watch:electron\" \"npm:dev:react\" \"npm:start:electron\"",
+		"watch:electron": "cross-env VITE_DEV_SERVER_URL=http://localhost:5173 tsc -p tsconfig.electron.json --watch",
+		"start:electron": "cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron dist-electron/main.js",
+		"dev:electron": "cross-env VITE_DEV_SERVER_URL=http://localhost:5173 tsc -p tsconfig.electron.json --watch",
+		"dev:react": "cd frontend && vite",
+		"build": "npm run build:react && npm run build:electron",
+		"build:react": "cd frontend && vite build",
+		"start": "electron dist-electron/main.js",
+		"build:electron": "tsc -p tsconfig.electron.json",
+		"package": "npm run build:react && npm run build:electron && electron-builder"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"devDependencies": {
+		"@types/electron": "^1.6.12",
+		"concurrently": "^9.1.2",
+		"cross-env": "^7.0.3",
+		"electron": "^35.1.5",
+		"electron-builder": "^26.0.12",
+		"vite": "^6.2.6"
+	},
+	"build": {
+		"appId": "com.projetoverdinho.app",
+		"productName": "SGO - Sistema de Gerenciamento de Ocorrencias",
+		"files": [
+			"dist-electron/**/*",
+			"frontend/dist/**/*"
+		],
+		"directories": {
+			"output": "dist"
+		},
+		"win": {
+			"target": "nsis"
+		}
+	},
+	"workspaces": [
+		"frontend"
+	]
+}
