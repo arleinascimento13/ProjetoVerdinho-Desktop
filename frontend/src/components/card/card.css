@@ -1,0 +1,9 @@
+.card-footer {
+	background-color: rgba(0, 0, 0, 0.14) !important; /* Ajuste a opacidade conforme necessário */
+}
+
+.imglogo {
+	position: absolute;
+	top: 30%;
+	right: 5%;
+}
