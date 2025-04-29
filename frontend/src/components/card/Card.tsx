@@ -1,60 +1,84 @@
-import React, { useEffect, useRef, useState } from "react";
-import * as LucideIcons from "lucide-react"; // Importa todos os ícones
-import "./Card.css";
+import pataDomestica from './assets/pata.png';
+import pataSilvestre from './assets/pata-de-urso.png';
+import pessoa from './assets/pessoa.png';
+import seta from './assets/seta-direita.png';
+import { CardType, cardStyles } from './CardConfig';
 
-interface CardProps {
-	totalPets: number;
-	CorDoCard: string; // ex: "bg-info"
-	corDoTexto: string; // ex: "text-white"
-	iconName: string; // Passando o nome do ícone como prop
-}
-
-// Função para escurecer e converter RGB → HEX
-const rgbToDarkerHex = (rgb: string, factor = 0.8): string => {
-	const result = rgb.match(/\d+/g);
-	if (!result || result.length < 3) return "#000000";
-
-	const [r, g, b] = result.map(Number);
-	const darken = (value: number) => Math.max(0, Math.min(255, Math.floor(value * factor)));
-
-	return (
-		"#" +
-		[darken(r), darken(g), darken(b)]
-			.map((x) => x.toString(16).padStart(2, "0"))
-			.join("")
-			.toUpperCase()
-	);
+type CardProps = {
+    type: CardType;
+    title: string;
+    count: number;
+    onClick: () => void;
+    showButton?: boolean;
 };
 
-const Card: React.FC<CardProps> = ({ totalPets, CorDoCard, corDoTexto, iconName }) => {
-	const cardRef = useRef<HTMLDivElement>(null);
-	const [iconColor, setIconColor] = useState<string>("");
-
-	// Pegando o ícone dinâmicamente
-	const Icon = LucideIcons[iconName as keyof typeof LucideIcons];
-
-	useEffect(() => {
-		if (cardRef.current) {
-			const styles = getComputedStyle(cardRef.current);
-			const bgColor = styles.backgroundColor;
-			const darkerHex = rgbToDarkerHex(bgColor, 0.75); // 25% mais escuro
-			setIconColor(darkerHex);
-		}
-	}, [CorDoCard]);
-
-	return (
-		<div ref={cardRef} className={`relative card ${CorDoCard} ${corDoTexto} border-0`}>
-			<div className="card-body">
-				<h4>{totalPets}</h4>
-				<p>Total Pets</p>
-			</div>
-			<div className="card-footer border-0">
-				<a href="#">More info</a>
-			</div>
-			{/* Usando o ícone dinâmico */}
-			{Icon && <Icon className="imglogo" fill={iconColor} color={iconColor} size={48} />}
-		</div>
-	);
+const cardImages: Record<CardType, string> = {
+    domestico: pataDomestica,
+    silvestre: pataSilvestre,
+    pessoas: pessoa,
 };
 
-export default Card;
+export const Card = ({
+    type,
+    title,
+    count,
+    onClick,
+    showButton = true
+}: CardProps) => {
+   
+    const { gradientFrom, gradientTo } = cardStyles[type];
+    const image = cardImages[type];
+    
+    function formatCount(count: number): string {
+        if (count < 1000) return count.toString();
+        if (count < 1_000_000) return (count / 1000).toFixed(count % 1000 === 0 ? 0 : 1) + 'k';
+        if (count < 1_000_000_000) return (count / 1_000_000).toFixed(count % 1_000_000 === 0 ? 0 : 1) + 'M';
+        return (count / 1_000_000_000).toFixed(count % 1_000_000_000 === 0 ? 0 : 1) + 'B';
+    }
+
+    function getFontSizeClass(formattedCount: string): string {
+        const length = formattedCount.length;
+        if (length <= 3) return 'text-8xl';
+        if (length === 4) return 'text-7xl';
+        if (length === 5) return 'text-6xl';
+        if (length === 6) return 'text-5xl';
+        return 'text-4xl'; // Para 7 ou mais caracteres como "100.5M"
+    }
+    
+    const formatted = formatCount(count);
+    
+    return (
+        <div 
+            className="w-80 h-40 rounded-lg p-3.5 flex justify-center items-center  "
+            style={{
+                backgroundImage: `linear-gradient(to bottom left, ${gradientFrom}, ${gradientTo})`
+            }}
+        >
+        
+            <div className="flex flex-col items-center">
+                <p className="text-white font-bold text-lg mb-0">{title}</p>
+                <p className={`text-white font-bold ${getFontSizeClass(formatted)}`}>
+                {formatted}
+                </p>
+            </div>
+            
+            <div className='flex flex-col items-center justify-center'>
+
+                <img src={image} alt={type} 
+                    className=" w-26 h-26 "
+                />
+            
+                {showButton && (
+                    <div className='flex items-center justify-center gap-1'>
+                    <button 
+                        onClick={onClick}
+                        className="text-white font-bold text-sm flex items-center cursor-pointer"
+                    >
+                    ver mais </button>
+                    <img src={seta} alt="seta direita" className='w-3.5 h-3.5' />
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
