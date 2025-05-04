@@ -42,14 +42,14 @@ export const Card = ({
         if (length === 4) return 'text-7xl';
         if (length === 5) return 'text-6xl';
         if (length === 6) return 'text-5xl';
-        return 'text-4xl'; // Para 7 ou mais caracteres como "100.5M"
+        return 'text-4xl';
     }
     
     const formatted = formatCount(count);
     
     return (
         <div 
-            className="w-80 h-40 rounded-lg p-3.5 flex justify-center items-center  "
+            className="w-80 h-40 rounded-lg p-3.5 flex justify-around items-center  "
             style={{
                 backgroundImage: `linear-gradient(to bottom left, ${gradientFrom}, ${gradientTo})`
             }}
@@ -74,8 +74,9 @@ export const Card = ({
                         onClick={onClick}
                         className="text-white font-bold text-sm flex items-center cursor-pointer"
                     >
-                    ver mais </button>
-                    <img src={seta} alt="seta direita" className='w-3.5 h-3.5' />
+                    ver mais 
+                    </button>
+                        <img src={seta} alt="seta direita" className='w-3.5 h-3.5' />
                     </div>
                 )}
             </div>

@@ -11,11 +11,12 @@ export default {
           sans: ['Inter', 'sans-serif'],
           inter: ['Inter', 'sans-serif'],
         },
+        colors: {
+          VerdeEscuro: "#005011",
+          VerdeClaro: "#13A934",
+          AzulEscuro: "#1F2937",
+        }
       },
-      colors: {
-        VerdeEscuro: "#005011",
-        VerdeClaro: "#13A934",
-      }
     },
     plugins: [],
   }

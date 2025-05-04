@@ -1,16 +1,20 @@
-import { Card } from "./components/Card/Card";
+
+import ChartsOverviewDemo from "./components/Graficos/Graficos";
+import { MenuBar } from "./components/MenuBar/MenuBar";
 
 
 export default function App() {
 	return (
-		<div className="w-full h-screen>">
-			<Card 
-				type="pessoas"
-				title="Pessoas Cadastradas"
-				count={3000000000}
-				onClick={() => console.log("Clicked Domestico")}
-				showButton={true}
+		<div className="absolute w-full h-screen bg-[#E1E1E1] flex ">
+			
+			<MenuBar 
+			name="Breno"
+			position="Desenvolvedor Frontend"
+			imgurl=""
+			onClick={() => console.log("MenuBar clicked")}
 			/>
+			
+			<ChartsOverviewDemo />
 		</div>
 	);
 }
