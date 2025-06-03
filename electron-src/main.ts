@@ -5,12 +5,12 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 1920,
         height: 1080,
-        fullscreen: true, // Força tela cheia imediatamente
-        resizable: true, // Impede redimensionamento
-        maximizable: true, // Remove o botão de maximizar
-        minimizable: true, 
-        fullscreenable: false, // Impede sair do modo fullscreen
-        autoHideMenuBar: false, // Esconde a barra de menu
+        fullscreen: true,
+        resizable: true,
+        maximizable: true,
+        minimizable: true,
+        fullscreenable: false,
+        autoHideMenuBar: false,
         webPreferences: {
             preload: path.join(__dirname, "preload.js"),
         },

@@ -1,6 +1,7 @@
 
-import ChartsOverviewDemo from "./components/Graficos/Graficos";
+import GraficosCard from "./components/Graphics/Graficos";
 import { MenuBar } from "./components/MenuBar/MenuBar";
+import AnimaisDomesticosPage from "./pages/AnimaisDomésticos/AnimaisDomésticos";
 
 
 export default function App() {
@@ -13,8 +14,12 @@ export default function App() {
 			imgurl=""
 			onClick={() => console.log("MenuBar clicked")}
 			/>
-			
-			<ChartsOverviewDemo />
+		
+			<GraficosCard />
+
+		{/* <div className="flex-1 flex items-center justify-center">
+			<AnimaisDomesticosPage />
+		</div> */}
 		</div>
 	);
 }

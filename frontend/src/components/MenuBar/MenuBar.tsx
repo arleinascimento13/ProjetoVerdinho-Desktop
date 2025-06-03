@@ -9,6 +9,7 @@ const menuItems = [
   "Domésticos",
   "Silvestres"
 ];
+
 type InfoProps = {
   name: string;
   position: string;
