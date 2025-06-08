@@ -49,14 +49,14 @@ export const Card = ({
     
     return (
         <div 
-            className="w-80 h-40 rounded-lg p-3.5 flex justify-around items-center  "
+            className="w-90 h-44 rounded-lg p-3.5 flex justify-around items-center"
             style={{
                 backgroundImage: `linear-gradient(to bottom left, ${gradientFrom}, ${gradientTo})`
             }}
         >
         
             <div className="flex flex-col items-center">
-                <p className="text-white font-bold text-lg mb-0">{title}</p>
+                <p className="text-white font-bold text-xl">{title}</p>
                 <p className={`text-white font-bold ${getFontSizeClass(formatted)}`}>
                 {formatted}
                 </p>

@@ -20,12 +20,12 @@ export default function GraficosCard() {
   }, [selecionado]);
 
   return (
-    <div className="h-[400px] w-[1200px] flex flex-col bg-white rounded-lg p-4">
+    <div className="h-[400px] w-[1200px]  flex flex-col bg-white rounded-lg p-4">
       {/* cabeçalho */}
-      <div className="flex items-center gap-4 mb-4">
-        <p className="text-2xl font-extrabold">Ocorrências</p>
+      <div className="flex items-baseline gap-3 mb-4">
+        <p className="text-3xl font-bold">Ocorrências</p>
         <select
-          className="border rounded p-1"
+          className="border rounded p-2"
           value={selecionado}
           onChange={(e) => setSelecionado(e.target.value)}
         >
@@ -40,12 +40,12 @@ export default function GraficosCard() {
       {/* gráfico */}
       {ocorrencias ? (
         <BarChart
-          height={290}
+          height={280}
           xAxis={[{ data: ocorrencias.meses }]}
           series={[
-            { data: ocorrencias.series[0], label: 'Consultas' },
-            { data: ocorrencias.series[1], label: 'Cirurgias' },
-            { data: ocorrencias.series[2], label: 'Emergências' },
+            { data: ocorrencias.series[0], label: 'Domésticos' },
+            { data: ocorrencias.series[1], label: 'Silvestres' },
+            { data: ocorrencias.series[2], label: 'Ocorrências' },
           ]}
           borderRadius={8}
         />

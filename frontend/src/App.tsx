@@ -1,25 +1,22 @@
-
-import GraficosCard from "./components/Graphics/Graficos";
+import { BrowserRouter } from "react-router-dom";
+import { MainRouter } from "./routers/MainRouter";
 import { MenuBar } from "./components/MenuBar/MenuBar";
-import AnimaisDomesticosPage from "./pages/AnimaisDomésticos/AnimaisDomésticos";
 
-
-export default function App() {
-	return (
-		<div className="absolute w-full h-screen bg-[#E1E1E1] flex ">
-			
-			<MenuBar 
-			name="Breno"
-			position="Desenvolvedor Frontend"
-			imgurl=""
-			onClick={() => console.log("MenuBar clicked")}
-			/>
-		
-			<GraficosCard />
-
-		{/* <div className="flex-1 flex items-center justify-center">
-			<AnimaisDomesticosPage />
-		</div> */}
-		</div>
-	);
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="flex h-screen bg-[#E1E1E1]">
+        <MenuBar
+          name="Seu Nome"
+          position="Sua Posição"
+          onClick={() => console.log("Foto clicada")}
+        />
+        <div className="flex-1 overflow-y-auto">
+          <MainRouter />
+        </div>
+      </div>
+    </BrowserRouter>
+  );
 }
+
+export default App;

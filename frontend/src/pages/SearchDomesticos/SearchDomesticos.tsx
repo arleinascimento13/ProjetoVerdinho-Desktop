@@ -62,7 +62,7 @@ const animaisMock: Animal[] = [
   // Adicione mais animais se quiser
 ];
 
-export default function AnimaisDomesticosPage() {
+export default function SearchDomesticos() {
   const [animais, setAnimais] = useState<Animal[]>(animaisMock);
 
   // Função de busca simples
