@@ -31,7 +31,7 @@ const AnimalSearch: React.FC<AnimalSearchProps> = ({
   };
 
   return (
-    <div className="p-4 bg-white h-[680px] w-[1200px] rounded-3xl">
+    <div className="p-4 bg-white h-[700px] w-[1200px] rounded-3xl">
       <p className="text-2xl font-bold mb-4">{titulo}</p>
      <form onSubmit={handleSearch} className="flex gap-2 mb-3">
   <div className="relative flex-1">

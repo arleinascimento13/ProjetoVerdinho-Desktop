@@ -4,6 +4,7 @@ export interface Semestre {
   label: string;      // "2025 – 1º semestre"
 }
 
+
 /*Payload com os dados do gráfico para um semestre*/
 export interface DadosOcorrencias {
   meses: string[];    // ['Jan', 'Fev', …]

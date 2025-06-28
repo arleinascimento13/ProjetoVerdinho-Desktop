@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import sair from "./assets/sair.png";
 import imgdefault from "./assets/Default.png";
 
@@ -7,8 +6,7 @@ const menuItems = [
   { label: "DashBoard", path: "/" },
   { label: "Pesquisa", path: "/pesquisa" },
   { label: "Ocorrência", path: "/ocorrencia" },
-  { label: "Domésticos", path: "/domesticos" },
-  { label: "Silvestres", path: "/silvestres" }
+  { label: "Relatórios", path: "/relatorios" }
 ];
 
 type InfoProps = {
@@ -19,13 +17,8 @@ type InfoProps = {
 };
 
 export const MenuBar = ({ name, position, imgurl, onClick }: InfoProps) => {
-  const [selected, setSelected] = useState("DashBoard");
   const navigate = useNavigate();
-
-  const handleItemClick = (item: { label: string; path: string }) => {
-    setSelected(item.label);
-    navigate(item.path);
-  };
+  const location = useLocation();
 
   return (
     <div className="w-56 h-screen bg-[#1F2937] flex flex-col justify-around text-white">
@@ -43,20 +36,25 @@ export const MenuBar = ({ name, position, imgurl, onClick }: InfoProps) => {
 
       <div className="flex flex-col items-center w-full mb-8">
         <div className="flex-1 w-full flex flex-col pt-96 justify-center items-center gap-3">
-          {menuItems.map((item, index) => (
-            <div
-              key={index}
-              onClick={() => handleItemClick(item)}
-              className={`relative w-full h-12 flex items-center justify-center cursor-pointer transition-all ${
-                selected === item.label ? "font-black text-lg" : "font-semibold"
-              }`}
-            >
-              {selected === item.label && (
-                <div className="absolute left-0 h-full w-1.5 bg-white" />
-              )}
-              {item.label}
-            </div>
-          ))}
+          {menuItems.map((item, index) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <div
+                key={index}
+                onClick={() => navigate(item.path, {
+                state: { from: location.pathname }
+                })}
+                className={`relative w-full h-12 flex items-center justify-center cursor-pointer transition-all ${
+                  isActive ? "font-black text-lg" : "font-semibold"
+                }`}
+              >
+                {isActive && (
+                  <div className="absolute left-0 h-full w-1.5 bg-white" />
+                )}
+                {item.label}
+              </div>
+            );
+          })}
         </div>
       </div>
 
