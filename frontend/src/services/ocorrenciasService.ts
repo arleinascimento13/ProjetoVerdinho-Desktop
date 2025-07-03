@@ -6,3 +6,5 @@ export const buscarSemestres = () =>
 
 export const buscarOcorrencias = (id: string) =>
   api.get<DadosOcorrencias>(`/ocorrencias/${id}`).then(r => r.data);
+
+

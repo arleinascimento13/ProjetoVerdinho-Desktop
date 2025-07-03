@@ -1,5 +1,7 @@
 import axios from "axios";
 
+let basicAuthHeader: string | null = null;
+
 const api = axios.create({
 	baseURL: import.meta.env.VITE_BASE_URL,
 	headers: {
@@ -7,12 +9,22 @@ const api = axios.create({
 	},
 });
 
+export function setBasicAuth(username: string, password: string): void {
+	basicAuthHeader = `Basic ${btoa(`${username}:${password}`)}`;
+}
 
-// Interceptor de requisição (ex: adicionar token no futuro)
-// api.interceptors.request.use(config => {
-//   const token = localStorage.getItem("token");
-//   if (token) config.headers.Authorization = `Bearer ${token}`;
-//   return config;
-// });
+export function clearBasicAuth(): void {
+	basicAuthHeader = null;
+}
+
+api.interceptors.request.use((config) => {
+	if (basicAuthHeader) {
+		config.headers = {
+			...config.headers,
+			Authorization: basicAuthHeader,
+		};
+	}
+	return config;
+});
 
 export default api;
