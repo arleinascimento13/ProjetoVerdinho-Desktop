@@ -22,7 +22,7 @@ export interface Person {
 export const searchPeopleService = {
   async getPersonById(id: string): Promise<Person> { 
     try {
-      const response = await api.get<Person>(`/pessoa/${id}?secret-key=boladeraxixe`);
+      const response = await api.get<Person>(`/pessoa/${id}`);
       return response.data;
     } catch (error) {
       console.error('Erro ao buscar pessoa:', error);
@@ -32,7 +32,7 @@ export const searchPeopleService = {
 
   async getPersonAnimals(personId: string): Promise<Animal[]> {
     try {
-      const response = await api.get<Animal[]>(`/pessoa/${personId}/animais?secret-key=boladeraxixe`);
+      const response = await api.get<Animal[]>(`/pessoa/${personId}/animais`);
       return response.data;
     } catch (error) {
       console.error('Erro ao buscar animais da pessoa:', error);
@@ -42,7 +42,7 @@ export const searchPeopleService = {
 
   async getAllPeople(): Promise<Person[]> {
     try {
-      const response = await api.get<Person[]>('/pessoa?secret-key=boladeraxixe');
+      const response = await api.get<Person[]>('/pessoa');
       return response.data;
     } catch (error) {
       console.error('Erro ao buscar pessoas:', error);

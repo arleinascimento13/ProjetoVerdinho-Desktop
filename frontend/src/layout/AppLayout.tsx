@@ -1,7 +1,6 @@
 import { MenuBar } from "../components/MenuBar/MenuBar";
 import { MainRouter } from "../routers/MainRouter";
 import { useLocation } from "react-router-dom";
-import React from "react";
 
 export const AppLayout = () => {
 	const location = useLocation();

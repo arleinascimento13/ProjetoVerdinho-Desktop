@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import PeopleSearch, { Person } from '../../components/PeopleSearch/PeopleSearch';
-import { VoltarButton } from '../../components/VoltarButton/VoltarButton';
+import PeopleSearch from '../../components/PeopleSearch/PeopleSearch';
+import { Person, searchPeopleService } from '../../services/SearchPeopleService';
+
 
 export default function SearchPeople() {
   const [pessoas, setPessoas] = useState<Person[]>([]);
@@ -10,9 +10,9 @@ export default function SearchPeople() {
   useEffect(() => {
     const fetchPessoas = async () => {
       try {
-        const response = await axios.get<Person[]>('http://193.123.111.195:3569/api/v1/pessoa?secret-key=boladeraxixe');
-        setPessoas(response.data);
-        setAllPessoas(response.data);
+        const response = await searchPeopleService.getAllPeople();
+        setPessoas(response);
+        setAllPessoas(response);
       } catch (error) {
         console.error('Erro ao buscar pessoas:', error);
       }

@@ -5,6 +5,7 @@ import { searchPeopleService, Person } from '../../services/SearchPeopleService'
 
 interface PeopleSearchProps {
   titulo: string;
+  pessoas: Person[];
   onSearch?: (query: string) => void; // busca temporária rsrs...
 }
 
@@ -115,7 +116,7 @@ const PeopleSearch: React.FC<PeopleSearchProps> = ({
                 <img src={pessoa.imagem} alt={pessoa.nome} className="w-14 h-14 rounded border-[#12431D] border-3" />
                 <div>
                   <span className="font-bold">{pessoa.nome}</span> - CPF: {pessoa.cpf} - {pessoa.telefone}
-                  {pessoa.endereco && <span className="text-gray-500"> - {pessoa.endereco}</span>}
+                  {pessoa.endereco.toString() && <span className="text-gray-500"> - {pessoa.endereco.toString()}</span>}
                 </div>
               </div>
             ))

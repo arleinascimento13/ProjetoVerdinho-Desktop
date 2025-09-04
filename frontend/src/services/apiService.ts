@@ -5,6 +5,7 @@ let basicAuthHeader: string | null = null;
 const api = axios.create({
 	baseURL: import.meta.env.VITE_BASE_URL,
 	headers: {
+
 		"Content-Type": "application/json",
 	},
 });
@@ -19,10 +20,7 @@ export function clearBasicAuth(): void {
 
 api.interceptors.request.use((config) => {
 	if (basicAuthHeader) {
-		config.headers = {
-			...config.headers,
-			Authorization: basicAuthHeader,
-		};
+		config.headers.set("Authorization", basicAuthHeader);
 	}
 	return config;
 });
